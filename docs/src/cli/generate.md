@@ -30,24 +30,9 @@ what keywords were extracted, what states were split and why, and the entry poin
 
 The ABI to use for parser generation. The default is ABI 15, with ABI 14 being a supported target.
 
-### `--emit`
+### `--no-parser`
 
-What generated files to emit. Possible values:
-
-- `json`: Generate `grammar.json` and `node-types.json`
-- `parser` (default): Generate `parser.c` and related files.
-- `lib`: Compile to a library (equivalent of the deprecated `--build` option)
-
-### `-0/--debug-build`
-
-Compile the parser with debug flags enabled. This is useful when debugging issues that require a debugger like `gdb` or `lldb`.
-
-### `--libdir <PATH>`
-
-The directory to place the compiled parser(s) in.
-On Unix systems, the default path is `$XDG_CACHE_HOME/tree-sitter` if `$XDG_CACHE_HOME` is set,
-otherwise `$HOME/.config/tree-sitter` is used. On Windows, the default path is `%LOCALAPPDATA%\tree-sitter` if available,
-otherwise `$HOME\AppData\Local\tree-sitter` is used.
+Only generate `grammar.json` and `node-types.json`
 
 ### `-o/--output`
 
@@ -59,7 +44,7 @@ Print the overview of states from the given rule. This is useful for debugging a
 item sets for all given states in a given rule. To solely view state count numbers for rules, pass in `-` for the rule argument.
 To view the overview of states for every rule, pass in `*` for the rule argument.
 
-### `--json`
+### `--json-summary`
 
 Report conflicts in a JSON format.
 
@@ -69,3 +54,7 @@ The path to the JavaScript runtime executable to use when generating the parser.
 Note that you can also set this with `TREE_SITTER_JS_RUNTIME`. Starting from version 0.26.0, you can
 also pass in `native` to use the native QuickJS runtime that comes bundled with the CLI. This avoids
 the dependency on a JavaScript runtime entirely.
+
+### `--disable-optimization`
+
+Disable optimizations when generating the parser. Currently, this only affects the merging of compatible parse states.
